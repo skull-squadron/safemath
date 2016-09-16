@@ -8,13 +8,6 @@ const (
 	uintMagnitudeMSB = uint(1) << (strconv.IntSize - 1) // MSB
 )
 
-var (
-	uaddOverflow  = Error("Unsigned addition overflow")
-	usubUnderflow = Error("Unsigned subtraction Underflow")
-	umulOverflow  = Error("Unsigned multiplication overflow")
-	udivByZero    = Error("Unsigned division by zero")
-)
-
 func WouldUaddOverflow(a, b uint) bool {
 	return a&b&uintMagnitudeMSB > 0
 }
@@ -28,7 +21,7 @@ func WouldUaddOverflow(a, b uint) bool {
 // b   1 x ... x x x
 func Uadd(a, b uint) uint {
 	if WouldUaddOverflow(a, b) {
-		panic(uaddOverflow)
+		panic(UaddOverflow)
 	}
 	return a + b
 }
@@ -39,7 +32,7 @@ func WouldUsubUnderflow(a, b uint) bool {
 
 func Usub(a, b uint) uint {
 	if WouldUsubUnderflow(a, b) {
-		panic(usubUnderflow)
+		panic(UsubUnderflow)
 	}
 	return a - b
 }
@@ -56,7 +49,7 @@ func WouldUmulOverflow(a, b uint) bool {
 // hacker's delight p. 68
 func Umul(a, b uint) uint {
 	if WouldUmulOverflow(a, b) {
-		panic(umulOverflow)
+		panic(UmulOverflow)
 	}
 	return a * b
 }
@@ -67,7 +60,7 @@ func WouldUmulDivZero(a, b uint) bool {
 
 func Udiv(a, b uint) uint {
 	if WouldUmulDivZero(a, b) {
-		panic(udivByZero)
+		panic(UdivByZero)
 	}
 	return a / b
 }

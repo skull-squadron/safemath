@@ -10,17 +10,6 @@ const (
 	minIntSqrt      = -maxIntSqrt - 1
 )
 
-var (
-	AddOverflow  = Error("Signed addition overflow")
-	AddUnderflow = Error("Signed addition underflow")
-	SubOverflow  = Error("Signed subtraction overflow")
-	SubUnderflow = Error("Signed subtraction underflow")
-	MulOverflow  = Error("Signed multiplication overflow")
-	MulUnderflow = Error("Signed multiplication underflow")
-	DivUnderflow = Error("Signed divison underflow")
-	DivByZero    = Error("Signed divison by zero")
-)
-
 func WouldAddError(a, b int) bool {
 	return a&b&intMagnitudeMSB < 0
 }
